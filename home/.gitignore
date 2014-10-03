@@ -1,0 +1,8 @@
+# VIM temp files
+.*.sw[opn]
+
+# Python temp files
+*.pyc
+
+# virtualenv .ENV directory
+.ENV

@@ -1,0 +1,20 @@
+[user]
+	name = Adam Hayward
+	email = adam@happy.cat
+[color]
+    diff = auto
+    status = auto
+    branch = auto
+[alias]
+    co = checkout
+    ci = commit
+    st = status
+    br = branch
+    h = log --pretty=format:\"%Cgreen%h %ad%Creset %s%Cgreen%d%Creset [%an]\" --graph --date=short
+    ha = log --pretty=format:\"%Cgreen%h %ad%Creset %s%Cgreen%d%Creset [%an]\" --graph --date=short --all
+    l = log --name-status
+[core]
+    excludesfile = ~/.gitignore
+[github]
+    user = adnam
+	token = f725dd192957916d8c19d3b6be747fe8
