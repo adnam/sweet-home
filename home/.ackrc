@@ -27,4 +27,6 @@ php=.php,.phpt,.php3,.php4,.php5,.phtml,.inc
 --type-set
 ht=.htaccess
 
+# Specific files to ignore
+--ignore-file=is:MODERN.sql
 
