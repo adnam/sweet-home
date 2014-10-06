@@ -1,0 +1,4 @@
+#!/bin/bash
+
+php -r "echo substr(sha1(microtime()), 0, 22);"
+echo

@@ -6,7 +6,7 @@ SCRIPT_DIR=`pwd -P`
 popd > /dev/null
 FALSE_HOME=${SCRIPT_DIR}/home
 
-TO_INSTALL=(.ackrc .bash_logout .bashrc .gitconfig .gitignore .profile .vimrc .vim)
+TO_INSTALL=(.ackrc .bash_logout .bashrc .gitconfig .gitignore .profile .vimrc .vim bin)
 
 for FILE in ${TO_INSTALL[*]}; do
     echo "Installing $FILE"

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+SWPFILES=`find -name *.sw[op]`
+
+FILES=`find -name *.sw[op] | awk '{sub(/\/\./,"/");print}'| awk '{sub(/\.sw[op]$/,"");print}'`
+
+rm -f $SWPFILES
+
+gvim $FILES
+

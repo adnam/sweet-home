@@ -1,0 +1,12 @@
+#!/bin/bash
+
+for SCANS in FIXME XXX TODO;
+do
+  find . -name '*.py' \
+    -exec grep -i --files-with-matches $SCANS {} \; \
+    -exec grep -i --line-number --color=always -C 5 $SCANS {} \;
+  find . -name '*.php' \
+    -exec grep -i --files-with-matches $SCANS {} \; \
+    -exec grep -i --line-number --color=always -C 5 $SCANS {} \;
+done
+
