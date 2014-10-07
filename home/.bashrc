@@ -64,6 +64,9 @@ fi
 parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
 }
+get_current_git_branch() {
+    git rev-parse --abbrev-ref HEAD 2>/dev/null
+}
 parse_svn_branch() {
     parse_svn_url | sed -e 's#^'"$(parse_svn_repository_root)"'##g' | awk -F / '{print "(svn::"$1 "/" $2 ")"}'
 }
