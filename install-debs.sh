@@ -32,7 +32,8 @@ apt-get -y install language-pack-en \
 	make \
 	build-essential \
 	openssh-server \
-	realpath
+	realpath \
+    whois
 
 # Editors
 apt-get -y install vim vim-gnome exuberant-ctags
