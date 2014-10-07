@@ -29,4 +29,5 @@ ht=.htaccess
 
 # Specific files to ignore
 --ignore-file=is:MODERN.sql
-
+--ignore-file=is:SASTSTAG.sql
+--ignore-file=is:SAST_LOUNGE.sql
