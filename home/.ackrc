@@ -1,14 +1,16 @@
 # Ignore build_output directory
---ignore-dir=build_output
+--ignore-dir=is:build_output
 
 # Ignore tiny js files
---ignore-dir=tiny_mce
+--ignore-dir=is:tiny_mce
 
 # Ignore session dir
---ignore-dir=session
+--ignore-dir=is:session
 
 # Ignore cache dir
---ignore-dir=cache
+--ignore-dir=is:cache
+
+--ignore-dir=is:.ENV
 
 # Add 'tpl' type.
 # NB: line break is necessary, see http://code.google.com/p/ack/issues/detail?id=116
@@ -23,11 +25,14 @@ po=.po,.pot
 --type-set
 php=.php,.phpt,.php3,.php4,.php5,.phtml,.inc
 
+# Add python filetype
+--type-add=py:ext:py
+
 # Add '.htaccess' filetype
---type-set
-ht=.htaccess
+--type-add=ht:ext:htaccess
 
 # Specific files to ignore
---ignore-file=is:MODERN.sql
---ignore-file=is:SASTSTAG.sql
---ignore-file=is:SAST_LOUNGE.sql
+--ignore-file=match:MODERN.sql
+--ignore-file=match:SASTSTAG.sql
+--ignore-file=match:SAST_LOUNGE.sql
+

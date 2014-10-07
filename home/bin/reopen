@@ -6,5 +6,5 @@ FILES=`find -name *.sw[op] | awk '{sub(/\/\./,"/");print}'| awk '{sub(/\.sw[op]$
 
 rm -f $SWPFILES
 
-gvim $FILES
+gvim $FILES 2>/dev/null
 

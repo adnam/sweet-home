@@ -76,17 +76,14 @@ parse_svn_url() {
 parse_svn_repository_root() {
     svn info 2>/dev/null | grep -e '^Repository Root:*' | sed -e 's#^Repository Root: *\(.*\)#\1\/#g '
 }
+#PS1='\[\e[1;32m\]\H\[\e[0;37m\]:$?:${PWD#${PWD%/*/*/*}/}> '
+#PS1=[$HOSTNAME:'$?:${PWD#${PWD%/*/*/*}/}> '
+#PS1='[\033[0;32m\]\h\[\033[1;30m\]:$?:${PWD#${PWD%/*/*/*}/}> '
 #PS1="\[\033[00m\]\u@\h\[\033[01;34m\] \w \[\033[31m\]\$(parse_git_branch)\$(parse_svn_branch)\[\033[00m\]>\[\033[00m\] "
 #PS1="\[\e[1;32m\]\H\[\e[0;37m\]:$?:${PWD#${PWD%/*/*/*}/} \[\033[31m\]\$(parse_git_branch)\$(parse_svn_branch)\[\033[00m\]>\[\033[00m\] "
 #PS1="\[\e[1;32m\]\H\[\e[0;37m\]:$?:${PWD#${PWD%/*/*/*}/} \[\033[00;35m\]\$(parse_git_branch)\$(parse_svn_branch)\[\033[00m\]\[\033[01;37m\]>\[\033[00m\] "
 #PS1="\[\e[1;32m\]${HOSTNAME}\[\e[0;37m\]":'$?:${PWD#${PWD%/*/*/*}/} '"\[\033[00;35m\][\$(parse_git_branch)\$(parse_svn_branch)]\[\033[00m\]\[\033[01;37m\]>\[\033[00m\] "
 PS1="\[\u@\e[1;32m\]${HOSTNAME}\[\e[0;37m\]":'$?:${PWD#${PWD%/*/*/*}/} '"\[\033[00;35m\][\$(get_current_git_branch)]\[\033[00m\]\[\033[01;37m\]>\[\033[00m\] "
-
-
-
-#PS1='\[\e[1;32m\]\H\[\e[0;37m\]:$?:${PWD#${PWD%/*/*/*}/}> '
-#PS1=[$HOSTNAME:'$?:${PWD#${PWD%/*/*/*}/}> '
-#PS1='[\033[0;32m\]\h\[\033[1;30m\]:$?:${PWD#${PWD%/*/*/*}/}> '
 export PS1
 export PATH=$PATH:$HOME/bin:/opt/apache-cassandra-0.8.0/bin
 #export SVDIR=/home/adam/service
@@ -133,3 +130,8 @@ cd () {
     source .env
   fi
 }
+if [ -f $PWD/.env ]; then
+    cd .
+fi
+
+
