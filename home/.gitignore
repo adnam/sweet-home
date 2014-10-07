@@ -6,3 +6,6 @@
 
 # virtualenv .ENV directory
 .ENV
+
+# bash .env directory
+.env
