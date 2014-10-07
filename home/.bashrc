@@ -79,7 +79,8 @@ parse_svn_repository_root() {
 #PS1="\[\033[00m\]\u@\h\[\033[01;34m\] \w \[\033[31m\]\$(parse_git_branch)\$(parse_svn_branch)\[\033[00m\]>\[\033[00m\] "
 #PS1="\[\e[1;32m\]\H\[\e[0;37m\]:$?:${PWD#${PWD%/*/*/*}/} \[\033[31m\]\$(parse_git_branch)\$(parse_svn_branch)\[\033[00m\]>\[\033[00m\] "
 #PS1="\[\e[1;32m\]\H\[\e[0;37m\]:$?:${PWD#${PWD%/*/*/*}/} \[\033[00;35m\]\$(parse_git_branch)\$(parse_svn_branch)\[\033[00m\]\[\033[01;37m\]>\[\033[00m\] "
-PS1="\[\e[1;32m\]${HOSTNAME}\[\e[0;37m\]":'$?:${PWD#${PWD%/*/*/*}/} '"\[\033[00;35m\][\$(parse_git_branch)\$(parse_svn_branch)]\[\033[00m\]\[\033[01;37m\]>\[\033[00m\] "
+#PS1="\[\e[1;32m\]${HOSTNAME}\[\e[0;37m\]":'$?:${PWD#${PWD%/*/*/*}/} '"\[\033[00;35m\][\$(parse_git_branch)\$(parse_svn_branch)]\[\033[00m\]\[\033[01;37m\]>\[\033[00m\] "
+PS1="\[\u@\e[1;32m\]${HOSTNAME}\[\e[0;37m\]":'$?:${PWD#${PWD%/*/*/*}/} '"\[\033[00;35m\][\$(get_current_git_branch)]\[\033[00m\]\[\033[01;37m\]>\[\033[00m\] "
 
 
 
@@ -99,7 +100,6 @@ alias ll='ls -l'
 alias la='ls -A'
 alias l='ls -CF'
 alias c='clear'
-#alias sdf='ssh adnam@tty.freeshell.org'
 alias f='find -name '
 alias g='egrep --exclude=\*.svn\* --exclude=\*.swp --exclude=\*.swo --exclude=^build_output\* -r -n '
 alias k='kompare - &'
@@ -108,6 +108,7 @@ alias ick='ack -i'
 alias log='svn log -v -l 30 | less'
 alias dif='svn diff | less'
 alias less='less -x4'
+alias gvim='gvim 2>/dev/null'
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -120,3 +121,15 @@ fi
 #   export SVDIR=~/service
 #fi
 
+# Auto-run env script on enter directory
+cd () {
+  builtin cd "$@"
+  INWS=`echo $PWD | grep '^/home/adam/workspace'`
+  if [ $INWS ] && [ -f .env ]; then
+    echo "Found environment file .env"
+    echo "---------- START ----------"
+    cat .env
+    echo "----------- END -----------"
+    source .env
+  fi
+}
