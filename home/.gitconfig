@@ -15,3 +15,5 @@
     l = log --name-status
 [core]
     excludesfile = ~/.gitignore
+[push]
+    default = simple
