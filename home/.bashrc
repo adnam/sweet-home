@@ -10,6 +10,11 @@ export HISTCONTROL=ignoredups
 # ... and ignore same sucessive entries.
 export HISTCONTROL=ignoreboth
 
+# keep adding to the end of the ~/.bash_history file rather than obliterate the file at regular intervals
+shopt -s histappend
+
+export PROMPT_COMMAND="history -a; history -n; history -r; $PROMPT_COMMAND"
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -22,27 +27,29 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-xterm-color)
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-    ;;
-*)
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-    ;;
-esac
+#set a fancy prompt (non-color, unless we know we "want" color)
+#case "$TERM" in
+#xterm-color)
+#    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+#    ;;
+#*)
+#    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+#    ;;
+#esac
 
 # Comment in the above and uncomment this below for a color prompt
 #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
-    ;;
-*)
-    ;;
-esac
+
+
+#If this is an xterm set the title to user@host:dir
+#case "$TERM" in
+#xterm*|rxvt*)
+#    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}: ${PWD/$HOME/~}\007"'
+#    ;;
+#*)
+#    ;;
+#esac
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -57,8 +64,6 @@ esac
 if [ "$TERM" != "dumb" ]; then
     eval "`dircolors -b`"
     alias ls='ls --color=auto'
-    #alias dir='ls --color=auto --format=vertical'
-    #alias vdir='ls --color=auto --format=long'
 fi
 
 parse_git_branch() {
@@ -98,12 +103,8 @@ alias la='ls -A'
 alias l='ls -CF'
 alias c='clear'
 alias f='find -name '
-alias g='egrep --exclude=\*.svn\* --exclude=\*.swp --exclude=\*.swo --exclude=^build_output\* -r -n '
 alias k='kompare - &'
-alias build="build -H"
 alias ick='ack -i'
-alias log='svn log -v -l 30 | less'
-alias dif='svn diff | less'
 alias less='less -x4'
 alias gvim='gvim 2>/dev/null'
 
