@@ -6,23 +6,12 @@ if [ "$UID" -ne  0 ]; then
    exit 1;
 fi
 
-install_package()
-{
-    sudo apt-get -y install $1
-}
-
 # Update package lists
 apt-get -y update
 
 # Perform a system upgrade
 apt-get -y upgrade
 
-# Checkout homedir files
-#mv ~/.bash_logout .bash_logout-bak
-#mv .bash_profile .bash_profile-bak
-#mv .bashrc .bashrc-bak
-#mv .profile .profile-bak
-#svn co --username adamh --password hayward62 --force http://svn.happy.cat/svn/home/trunk .
 #cp $HOME/fonts/* /usr/share/fonts/truetype/
 #fc-cache -f -v
 
@@ -68,14 +57,4 @@ ln -fs /usr/bin/ack-grep /usr/bin/ack
 
 # SFTP server
 apt-get -y install 
-
-# Extra desktop stuff
-#install_package firebug \
-#                mozilla-livehttpheaders \
-#                firefox-webdeveloper \
-#                adblock-plus
-#install_package virtualbox-ose
-#install_package rhythmbox
-#install_package pidgin
-
 
