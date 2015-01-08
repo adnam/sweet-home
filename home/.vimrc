@@ -24,6 +24,10 @@ endif
 set splitright
 set grepprg=ack-grep
 
+" Y U NO COMMIT?
+"----------------------------------------
+let g:YUNOcommit_after = 20
+
 " Syntax highlighting
 "----------------------------------------
 syntax enable

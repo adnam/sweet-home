@@ -9,3 +9,6 @@
 
 # bash .env directory
 .env
+
+# .DS_Store
+.DS_Store

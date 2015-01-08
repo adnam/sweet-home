@@ -35,4 +35,4 @@ php=.php,.phpt,.php3,.php4,.php5,.phtml,.inc
 --ignore-file=match:MODERN.sql
 --ignore-file=match:SASTSTAG.sql
 --ignore-file=match:SAST_LOUNGE.sql
-
+--ignore-file=match:sast-dispatcher.log
