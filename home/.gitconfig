@@ -13,6 +13,7 @@
     h = log --pretty=format:\"%Cgreen%h %ad%Creset %s%Cgreen%d%Creset [%an]\" --graph --date=short
     ha = log --pretty=format:\"%Cgreen%h %ad%Creset %s%Cgreen%d%Creset [%an]\" --graph --date=short --all
     l = log --name-status
+    duff = diff ; you plonker, rodney
 [core]
     excludesfile = ~/.gitignore
 [push]
