@@ -95,7 +95,7 @@ export PATH=$PATH:$HOME/bin:/opt/apache-cassandra-0.8.0/bin
 
 git config --global user.name "Adam Hayward"
 git config --global user.email "adam@happy.cat"
-bzr whoami "Adam Hayward <adam@happy.cat>"
+#bzr whoami "Adam Hayward <adam@happy.cat>"
 
 # some more ls aliases
 alias ll='ls -l'
@@ -136,3 +136,15 @@ if [ -f $PWD/.env ]; then
 fi
 
 
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+
+
+### Go Code
+export GOPATH="$HOME/workspace/gocode"
+export PATH="$GOPATH/bin:$PATH"
+
+
+### Python startup
+export PYTHONSTARTUP="$HOME/sweet-home/home/lib/python/startup.py"
