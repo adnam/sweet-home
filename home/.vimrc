@@ -32,7 +32,6 @@ let g:YUNOcommit_after = 20
 "----------------------------------------
 syntax enable
 syntax sync fromstart
-"colorscheme chocolate
 colorscheme chocolate
 
 " Highlight indent tabs
@@ -58,8 +57,8 @@ let python_slow_sync = 1
 
 " Abreviations
 "----------------------------------------
-ab dsep                         #====================================================================================<CR>
-ab lsep                         #------------------------------------------------------------------------------------<CR>
+ab dsep                         # ===================================================================================<CR>
+ab lsep                         # -----------------------------------------------------------------------------------<CR>
 ab msep                         /* <CR>-----------------------------------------------------------------------------------*/<CR>
 ab csst                         <link rel="Stylesheet" type="text/css" href="">
 ab jst                          <script type="text/javascript" src=""></script>
@@ -68,8 +67,11 @@ ab dgi                          document.getElementById("")
 ab dgt                          document.getElementsByTagName("")
 ab dce                          document.createElement("")
 ab dct                          document.createTextNode("")
+ab pyhead                       # -*- coding: utf8 -*-<CR>"""<CR>"""
 ab pymain                       if "__name__" == "__main__":
 ab jsfor                        for (var i = 0; i < .length; i++) {<CR>}<CR>
+ab pdb                          import pdb<CR>pdb.set_trace()
+
 
 " Buffers
 "----------------------------------------
@@ -194,9 +196,11 @@ endfunction
 "----------------------------------------
 if !exists("autocommands_loaded")
         let autocommands_loaded = 1
+        autocmd BufWritePre *.py :%s/\s\+$//e
         au BufNewFile   *.html  :call Template("html")
         au BufNewFile   *.py    :call Template("pyheader")
 endif
+
 
 " Load custom filetype mappings
 " ---------------------------------------
