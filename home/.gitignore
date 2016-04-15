@@ -1,14 +1,23 @@
 # VIM temp files
 .*.sw[opn]
+*.un~
+
+# OO tmp files
+.~lock.*#
 
 # Python temp files
 *.pyc
 
 # virtualenv .ENV directory
-.ENV
+.ENV*
 
 # bash .env directory
 .env
 
 # .DS_Store
 .DS_Store
+
+django
+rest_framework
+
+travelperk/tmp/
