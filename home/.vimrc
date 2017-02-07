@@ -164,9 +164,9 @@ from Cheetah.Template import Template
 from time import localtime
 
 def getDate():
-        months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-        date = localtime()
-        return "%s %d" % (months[date.tm_mon - 1], date.tm_year)
+    months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    date = localtime()
+    return "%s %d" % (months[date.tm_mon - 1], date.tm_year)
 
 try:
     template_file = file = environ["HOME"] + "/.vim/templates/" + vim.eval("a:name") + ".tmpl"
@@ -176,18 +176,18 @@ except Error:
     template = Template(template_file)
 
 for i in range(int(vim.eval("a:0"))):
-        setattr(template, "arg%d" % (i + 1), vim.eval("a:%d" % (i + 1)))
+    setattr(template, "arg%d" % (i + 1), vim.eval("a:%d" % (i + 1)))
 
 try:
-        output = template.respond()
+    output = template.respond()
 except:
-        print "Missing template arguments"
+    print "Missing template arguments"
 else:
-        start = vim.current.window.cursor[0] - 1
-        lines = output.split("\n")
-        vim.current.buffer[start:start + len(lines)] = lines
-        row, col = vim.current.window.cursor
-        vim.current.window.cursor = row + len(lines) - 1, col + len(lines[-1])
+    start = vim.current.window.cursor[0] - 1
+    lines = output.split("\n")
+    vim.current.buffer[start:start + len(lines)] = lines
+    row, col = vim.current.window.cursor
+    vim.current.window.cursor = row + len(lines) - 1, col + len(lines[-1])
 
 EOF
 endfunction
