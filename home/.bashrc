@@ -96,6 +96,9 @@ export PS1
 git config --global user.name "Adam Hayward"
 git config --global user.email "adam@happy.cat"
 # bzr whoami "Adam Hayward <adam@happy.cat>"
+#export PATH=$PATH:$HOME/bin:/opt/apache-cassandra-0.8.0/bin
+export PATH=$PATH:$HOME/bin
+#export SVDIR=/home/adam/service
 
 # some more ls aliases
 alias ll='ls -l'
@@ -138,6 +141,13 @@ fi
 
 export API_URL=http://127.0.0.1:8000
 export STREAMING_URL=http://127.0.0.1:4080
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
+
+### Go Code
+export GOPATH="$HOME/workspace/gocode"
+export PATH="$GOPATH/bin:$PATH"
 
 export NVM_DIR="/home/adam/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

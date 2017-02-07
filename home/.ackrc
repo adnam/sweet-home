@@ -8,7 +8,7 @@
 --ignore-dir=is:session
 
 # Ignore cache dir
---ignore-dir=is:cache
+# --ignore-dir=is:cache
 
 --ignore-dir=is:.ENV
 
@@ -36,3 +36,5 @@ php=.php,.phpt,.php3,.php4,.php5,.phtml,.inc
 --ignore-file=match:SASTSTAG.sql
 --ignore-file=match:SAST_LOUNGE.sql
 --ignore-file=match:sast-dispatcher.log
+--ignore-file=match:.coverage
+--ignore-dir=fixtures

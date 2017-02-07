@@ -32,7 +32,6 @@ let g:YUNOcommit_after = 20
 "----------------------------------------
 syntax enable
 syntax sync fromstart
-"colorscheme chocolate
 colorscheme chocolate
 
 " Highlight indent tabs
@@ -58,8 +57,8 @@ let python_slow_sync = 1
 
 " Abreviations
 "----------------------------------------
-ab dsep                         #====================================================================================<CR>
-ab lsep                         #------------------------------------------------------------------------------------<CR>
+ab dsep                         # ===================================================================================<CR>
+ab lsep                         # -----------------------------------------------------------------------------------<CR>
 ab msep                         /* <CR>-----------------------------------------------------------------------------------*/<CR>
 ab csst                         <link rel="Stylesheet" type="text/css" href="">
 ab jst                          <script type="text/javascript" src=""></script>
@@ -68,8 +67,11 @@ ab dgi                          document.getElementById("")
 ab dgt                          document.getElementsByTagName("")
 ab dce                          document.createElement("")
 ab dct                          document.createTextNode("")
+ab pyhead                       # -*- coding: utf8 -*-<CR>"""<CR>"""
 ab pymain                       if "__name__" == "__main__":
 ab jsfor                        for (var i = 0; i < .length; i++) {<CR>}<CR>
+ab pdb                          import pdb<CR>pdb.set_trace()
+
 
 " Buffers
 "----------------------------------------
@@ -162,9 +164,9 @@ from Cheetah.Template import Template
 from time import localtime
 
 def getDate():
-        months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-        date = localtime()
-        return "%s %d" % (months[date.tm_mon - 1], date.tm_year)
+    months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    date = localtime()
+    return "%s %d" % (months[date.tm_mon - 1], date.tm_year)
 
 try:
     template_file = file = environ["HOME"] + "/.vim/templates/" + vim.eval("a:name") + ".tmpl"
@@ -174,18 +176,18 @@ except Error:
     template = Template(template_file)
 
 for i in range(int(vim.eval("a:0"))):
-        setattr(template, "arg%d" % (i + 1), vim.eval("a:%d" % (i + 1)))
+    setattr(template, "arg%d" % (i + 1), vim.eval("a:%d" % (i + 1)))
 
 try:
-        output = template.respond()
+    output = template.respond()
 except:
-        print "Missing template arguments"
+    print "Missing template arguments"
 else:
-        start = vim.current.window.cursor[0] - 1
-        lines = output.split("\n")
-        vim.current.buffer[start:start + len(lines)] = lines
-        row, col = vim.current.window.cursor
-        vim.current.window.cursor = row + len(lines) - 1, col + len(lines[-1])
+    start = vim.current.window.cursor[0] - 1
+    lines = output.split("\n")
+    vim.current.buffer[start:start + len(lines)] = lines
+    row, col = vim.current.window.cursor
+    vim.current.window.cursor = row + len(lines) - 1, col + len(lines[-1])
 
 EOF
 endfunction
@@ -194,9 +196,11 @@ endfunction
 "----------------------------------------
 if !exists("autocommands_loaded")
         let autocommands_loaded = 1
+        autocmd BufWritePre *.py :%s/\s\+$//e
         au BufNewFile   *.html  :call Template("html")
         au BufNewFile   *.py    :call Template("pyheader")
 endif
+
 
 " Load custom filetype mappings
 " ---------------------------------------

@@ -14,9 +14,14 @@
     ha = log --pretty=format:\"%Cgreen%h %ad%Creset %s%Cgreen%d%Creset [%an]\" --graph --date=short --all
     l = log --name-status
     duff = diff ; you plonker, rodney
+    
+    ; Show all branches from oldest to newest
+    sb = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
 [core]
     excludesfile = ~/.gitignore
 [push]
     default = simple
+[pull]
+    rebase = true
 [merge]
     tool = meld
