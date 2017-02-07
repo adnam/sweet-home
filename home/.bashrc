@@ -90,12 +90,12 @@ parse_svn_repository_root() {
 #PS1="\[\e[1;32m\]${HOSTNAME}\[\e[0;37m\]":'$?:${PWD#${PWD%/*/*/*}/} '"\[\033[00;35m\][\$(parse_git_branch)\$(parse_svn_branch)]\[\033[00m\]\[\033[01;37m\]>\[\033[00m\] "
 PS1="\u@\[\e[1;32m\]${HOSTNAME}\[\e[0;37m\]":'$?:${PWD#${PWD%/*/*/*}/} '"\[\033[00;35m\][\$(get_current_git_branch)]\[\033[00m\]\[\033[01;37m\]>\[\033[00m\] "
 export PS1
-export PATH=$PATH:$HOME/bin:/opt/apache-cassandra-0.8.0/bin
-#export SVDIR=/home/adam/service
+# export PATH=$PATH:$HOME/bin:/opt/apache-cassandra-0.8.0/bin
+# export SVDIR=/home/adam/service
 
 git config --global user.name "Adam Hayward"
 git config --global user.email "adam@happy.cat"
-bzr whoami "Adam Hayward <adam@happy.cat>"
+# bzr whoami "Adam Hayward <adam@happy.cat>"
 
 # some more ls aliases
 alias ll='ls -l'
@@ -136,3 +136,8 @@ if [ -f $PWD/.env ]; then
 fi
 
 
+export API_URL=http://127.0.0.1:8000
+export STREAMING_URL=http://127.0.0.1:4080
+
+export NVM_DIR="/home/adam/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
