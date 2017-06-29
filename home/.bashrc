@@ -98,6 +98,7 @@ git config --global user.email "adam@happy.cat"
 # bzr whoami "Adam Hayward <adam@happy.cat>"
 #export PATH=$PATH:$HOME/bin:/opt/apache-cassandra-0.8.0/bin
 export PATH=$PATH:$HOME/bin
+export PATH=$PATH:$HOME/bin:$HOME/pycharm/bin
 #export SVDIR=/home/adam/service
 
 # some more ls aliases
@@ -110,6 +111,8 @@ alias k='kompare - &'
 alias ick='ack -i'
 alias less='less -x4'
 alias gvim='gvim 2>/dev/null'
+alias d='docker-compose'
+alias dr='docker-compose run'
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile

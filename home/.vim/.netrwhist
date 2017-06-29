@@ -1,11 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =9
-let g:netrw_dirhist_1='/home/adam/workspace/sast/automation/server/af685e8c3c03410396c9af41a965ebef'
-let g:netrw_dirhist_2='/etc/supervisor/conf.d'
-let g:netrw_dirhist_3='/home/adam/workspace/sast/dispatcher/sast_dispatcher/settings'
-let g:netrw_dirhist_4='/home/adam/workspace/sast/dispatcher/sast_dispatcher/apps/admin'
-let g:netrw_dirhist_5='/home/adam/workspace/sast/dispatcher/sast_dispatcher/apps/checkin'
-let g:netrw_dirhist_6='/home/adam/workspace/sast/dispatcher/env/local'
-let g:netrw_dirhist_7='/home/adam/workspace/sast/dispatcher/.ENV/lib/python2.7/site-packages/sqlalchemy/engine'
-let g:netrw_dirhist_8='/home/adam/workspace/sast/dispatcher/sast_dispatcher/settings'
-let g:netrw_dirhist_9='/home/adam/tmp'
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/home/adam/workspace/travelperk/backend/travelperk/onboarding'
+let g:netrw_dirhist_2='/home/adam/workspace/clarender/compose/nginx'
+let g:netrw_dirhist_3='/home/adam/workspace/clarender/clarender/taskapp'

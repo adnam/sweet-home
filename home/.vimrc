@@ -26,7 +26,7 @@ set grepprg=ack-grep
 
 " Y U NO COMMIT?
 "----------------------------------------
-let g:YUNOcommit_after = 20
+" let g:YUNOcommit_after = 20
 
 " Syntax highlighting
 "----------------------------------------
@@ -198,7 +198,7 @@ if !exists("autocommands_loaded")
         let autocommands_loaded = 1
         autocmd BufWritePre *.py :%s/\s\+$//e
         au BufNewFile   *.html  :call Template("html")
-        au BufNewFile   *.py    :call Template("pyheader")
+        " au BufNewFile   *.py    :call Template("pyheader")
 endif
 
 
