@@ -10,7 +10,7 @@ char_sets = [
     r'abcdefghijklmnopqrstuvwxyz',
     r'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
     r'0123456789',
-    r'^!\$%&()=?{[]}+~#-_.:,;<>|',
+    # r'^!\$%&()=?{[]}+~#-_.:,;<>|',
 ]
 
 

@@ -11,8 +11,8 @@
 # virtualenv .ENV directory
 .ENV*
 
-# bash .env directory
-.env
+# bash .direnv directory
+.direnv
 
 # .DS_Store
 .DS_Store

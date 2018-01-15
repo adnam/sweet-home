@@ -67,7 +67,7 @@ ab dgi                          document.getElementById("")
 ab dgt                          document.getElementsByTagName("")
 ab dce                          document.createElement("")
 ab dct                          document.createTextNode("")
-ab pyhead                       # -*- coding: utf8 -*-<CR>"""<CR>"""
+ab pyhead                       # -*- coding: utf-8 -*-<CR>"""<CR>"""
 ab pymain                       if "__name__" == "__main__":
 ab jsfor                        for (var i = 0; i < .length; i++) {<CR>}<CR>
 ab pdb                          import pdb<CR>pdb.set_trace()

@@ -129,15 +129,15 @@ fi
 cd () {
   builtin cd "$@"
   INWS=`echo $PWD | grep '^/home/adam/workspace'`
-  if [ $INWS ] && [ -f .env ]; then
-    echo "Found environment file .env"
+  if [ $INWS ] && [ -f .direnv ]; then
+    echo "Found environment file .direnv"
     echo "---------- START ----------"
-    cat .env
+    cat .direnv
     echo "----------- END -----------"
-    source .env
+    source .direnv
   fi
 }
-if [ -f $PWD/.env ]; then
+if [ -f $PWD/.direnv ]; then
     cd .
 fi
 
