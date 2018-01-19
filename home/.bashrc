@@ -113,6 +113,7 @@ alias less='less -x4'
 alias gvim='gvim 2>/dev/null'
 alias d='docker-compose'
 alias dr='docker-compose run'
+alias tmpfiles='find -name "*.sw[mnop]" -o -name "*.un~"'
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile

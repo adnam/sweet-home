@@ -1,5 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/home/adam/workspace/travelperk/backend/travelperk/onboarding'
-let g:netrw_dirhist_2='/home/adam/workspace/clarender/compose/nginx'
-let g:netrw_dirhist_3='/home/adam/workspace/clarender/clarender/taskapp'
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/home/adam/sweet-home/home/vim-old/.vim'
+let g:netrw_dirhist_2='/home/adam/sweet-home/home/vim-old/.vim/plugin'
+let g:netrw_dirhist_3='/home/adam/sweet-home/home/vim-old/.vim'
+let g:netrw_dirhist_4='/home/adam/sweet-home/home/vim-old/.vim/indent'
+let g:netrw_dirhist_5='/home/adam/sweet-home/home/vim-old/.vim'
+let g:netrw_dirhist_6='/home/adam/sweet-home/home/vim-old/.vim/plugin'
