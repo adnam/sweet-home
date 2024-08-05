@@ -5,14 +5,13 @@
 from random import choice
 import sys
 
-
 char_sets = [
-    r'abcdefghijklmnopqrstuvwxyz',
-    r'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-    r'0123456789',
-    # r'^!\$%&()=?{[]}+~#-_.:,;<>|',
+    r'abcdefghjkmnpqrstuvwxyz',
+    r'ABCDEFGHJKMNPQRSTUVWXYZ',
+    r'23456789',
+    r'^!\$%&()=?{[]}+~#-_.:,;<>|',
+    r'0123456789'
 ]
-
 
 def generate_password(length=24):
     """Function to generate a password"""
@@ -24,4 +23,6 @@ if __name__ == "__main__":
         length = int(sys.argv[1])
     except (IndexError, ValueError):
         length = 24
+    for arg in sys.argv[1:]:
+        pass
     print(generate_password(length))
