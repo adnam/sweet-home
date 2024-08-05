@@ -7,6 +7,7 @@
 
 # Python temp files
 *.pyc
+__pycache__
 
 # virtualenv .ENV directory
 .ENV*
@@ -17,6 +18,7 @@
 # .DS_Store
 .DS_Store
 
+travelperk/tmp.py
 travelperk/tmp/
 travelperk/TODO.txt
 travelperk/config/adam.py

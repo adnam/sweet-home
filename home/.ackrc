@@ -11,6 +11,7 @@
 # --ignore-dir=is:cache
 
 --ignore-dir=is:.ENV
+--ignore-dir=is:.venv
 
 # Add 'tpl' type.
 # NB: line break is necessary, see http://code.google.com/p/ack/issues/detail?id=116
@@ -38,3 +39,5 @@ php=.php,.phpt,.php3,.php4,.php5,.phtml,.inc
 --ignore-file=match:sast-dispatcher.log
 --ignore-file=match:.coverage
 --ignore-dir=fixtures
+--ignore-dir=.mypy_cache
+--ignore-dir=.pytest_cache

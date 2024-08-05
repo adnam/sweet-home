@@ -9,6 +9,7 @@
 export HISTCONTROL=ignoredups
 # ... and ignore same sucessive entries.
 export HISTCONTROL=ignoreboth
+export HISTFILESIZE=10000
 
 # keep adding to the end of the ~/.bash_history file rather than obliterate the file at regular intervals
 shopt -s histappend
@@ -66,20 +67,25 @@ if [ "$TERM" != "dumb" ]; then
     alias ls='ls --color=auto'
 fi
 
-parse_git_branch() {
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
-}
+# parse_git_branch() {
+#     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'
+# }
 get_current_git_branch() {
     git rev-parse --abbrev-ref HEAD 2>/dev/null
 }
-parse_svn_branch() {
-    parse_svn_url | sed -e 's#^'"$(parse_svn_repository_root)"'##g' | awk -F / '{print "(svn::"$1 "/" $2 ")"}'
-}
-parse_svn_url() {
-    svn info 2>/dev/null | grep -e '^URL*' | sed -e 's#^URL: *\(.*\)#\1#g '
-}
-parse_svn_repository_root() {
-    svn info 2>/dev/null | grep -e '^Repository Root:*' | sed -e 's#^Repository Root: *\(.*\)#\1\/#g '
+# parse_svn_branch() {
+#     parse_svn_url | sed -e 's#^'"$(parse_svn_repository_root)"'##g' | awk -F / '{print "(svn::"$1 "/" $2 ")"}'
+# }
+# parse_svn_url() {
+#     svn info 2>/dev/null | grep -e '^URL*' | sed -e 's#^URL: *\(.*\)#\1#g '
+# }
+# parse_svn_repository_root() {
+#     svn info 2>/dev/null | grep -e '^Repository Root:*' | sed -e 's#^Repository Root: *\(.*\)#\1\/#g '
+# }
+exit_status_if_not_zero(){
+  if [ $? -ne 0 ]; then 
+    echo "($?)"
+  fi
 }
 #PS1='\[\e[1;32m\]\H\[\e[0;37m\]:$?:${PWD#${PWD%/*/*/*}/}> '
 #PS1=[$HOSTNAME:'$?:${PWD#${PWD%/*/*/*}/}> '
@@ -88,7 +94,8 @@ parse_svn_repository_root() {
 #PS1="\[\e[1;32m\]\H\[\e[0;37m\]:$?:${PWD#${PWD%/*/*/*}/} \[\033[31m\]\$(parse_git_branch)\$(parse_svn_branch)\[\033[00m\]>\[\033[00m\] "
 #PS1="\[\e[1;32m\]\H\[\e[0;37m\]:$?:${PWD#${PWD%/*/*/*}/} \[\033[00;35m\]\$(parse_git_branch)\$(parse_svn_branch)\[\033[00m\]\[\033[01;37m\]>\[\033[00m\] "
 #PS1="\[\e[1;32m\]${HOSTNAME}\[\e[0;37m\]":'$?:${PWD#${PWD%/*/*/*}/} '"\[\033[00;35m\][\$(parse_git_branch)\$(parse_svn_branch)]\[\033[00m\]\[\033[01;37m\]>\[\033[00m\] "
-PS1="\u@\[\e[1;32m\]${HOSTNAME}\[\e[0;37m\]":'$?:${PWD#${PWD%/*/*/*}/} '"\[\033[00;35m\][\$(get_current_git_branch)]\[\033[00m\]\[\033[01;37m\]>\[\033[00m\] "
+#PS1="\u@\[\e[1;32m\]${HOSTNAME}\[\e[0;37m\]":'$?:${PWD#${PWD%/*/*/*}/} '"\[\033[00;35m\][\$(get_current_git_branch)]\[\033[00m\]\[\033[01;37m\]>\[\033[00m\] "
+PS1="\[\e[1;32m\]${HOSTNAME} \[\e[0;37m\]"$(exit_status_if_not_zero)'${PWD#${PWD%/*/*}/}'"\[\033[00;35m\] \$(get_current_git_branch)\[\033[00m\]\[\033[01;37m\]$\[\033[00m\] "
 export PS1
 # export PATH=$PATH:$HOME/bin:/opt/apache-cassandra-0.8.0/bin
 # export SVDIR=/home/adam/service
@@ -97,8 +104,8 @@ git config --global user.name "Adam Hayward"
 git config --global user.email "adam@happy.cat"
 # bzr whoami "Adam Hayward <adam@happy.cat>"
 #export PATH=$PATH:$HOME/bin:/opt/apache-cassandra-0.8.0/bin
+# export PATH=$PATH:$HOME/bin:$HOME/pycharm/bin
 export PATH=$PATH:$HOME/bin
-export PATH=$PATH:$HOME/bin:$HOME/pycharm/bin
 #export SVDIR=/home/adam/service
 
 # some more ls aliases
@@ -113,7 +120,19 @@ alias less='less -x4'
 alias gvim='gvim 2>/dev/null'
 alias d='docker-compose'
 alias dr='docker-compose run'
-alias tmpfiles='find -name "*.sw[mnop]" -o -name "*.un~"'
+alias tmpfiles='find . -regextype posix-egrep -regex ".*\.(sw[mnop]|un~)$"'
+alias update-elpaleta='pip install --upgrade -i https://pypi.org/simple git+ssh://git@github.com/travelperk/elpaleta.git'
+alias nv='nvim'
+alias tk='/home/adam/.local/bin/tk'
+
+# alias aws-login='cat ~/.ssh/onelogin && onelogin-aws-assume-role --onelogin-username adam@travelperk.com --onelogin-subdomain travelperk --onelogin-app-id 359880 --aws-region eu-west-1 --profile prod --duration 43200 -i 426729e894215ab11ae00c464ac6ae07065bfdc7ed34216e31ba601099c653b1 -seval $(aws ecr get-login --region eu-west-1 --no-include-email) -s 60180b998524d4d05f73d269c9c03cdabca50dbf024d63be8de8dfde6ec3b716 -r eu'
+# export ONELOGIN_PASS=$(< ~/.ssh/onelogin)
+# export ONELOGIN_CLIENT_SECRET=$(< ~/.ssh/onelogin.sdk.client_secret)
+export AWS_SDK_LOAD_CONFIG=1  # Load the AWS_PROFILE in terraform calls
+# alias aws-login-prod='onelogin-aws-assume-role --onelogin-username adam@travelperk.com --onelogin-password=$ONELOGIN_PASS --onelogin-subdomain travelperk --onelogin-app-id 359880 --aws-region eu-west-1 --profile prod --duration 43200 -i 426729e894215ab11ae00c464ac6ae07065bfdc7ed34216e31ba601099c653b1 -s $ONELOGIN_CLIENT_SECRET -r eu'
+# alias aws-login-staging='onelogin-aws-assume-role --onelogin-username adam@travelperk.com --onelogin-password=$ONELOGIN_PASS --onelogin-subdomain travelperk --onelogin-app-id 359880 --aws-region eu-west-1 --profile staging --duration 43200 -i 426729e894215ab11ae00c464ac6ae07065bfdc7ed34216e31ba601099c653b1 -s $ONELOGIN_CLIENT_SECRET -r eu'
+# alias aws-login='aws-login-prod'
+# alias ecr-login='eval $(aws --profile prod --region eu-west-1 ecr get-login --no-include-email)'
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -132,9 +151,9 @@ cd () {
   INWS=`echo $PWD | grep '^/home/adam/workspace'`
   if [ $INWS ] && [ -f .direnv ]; then
     echo "Found environment file .direnv"
-    echo "---------- START ----------"
+    echo "________________________________________________________________________"
     cat .direnv
-    echo "----------- END -----------"
+    echo "________________________________________________________________________"
     source .direnv
   fi
 }
@@ -143,15 +162,47 @@ if [ -f $PWD/.direnv ]; then
 fi
 
 
-export API_URL=http://127.0.0.1:8000
-export STREAMING_URL=http://127.0.0.1:4080
-
 ### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+# export PATH="/usr/local/heroku/bin:$PATH"
 
 ### Go Code
-export GOPATH="$HOME/workspace/gocode"
-export PATH="$GOPATH/bin:$PATH"
+# export GOPATH="$HOME/workspace/gocode"
+# export PATH="$GOPATH/bin:$PATH"
+
+# For awscli
+export PATH=~/.local/bin:$PATH
 
 export NVM_DIR="/home/adam/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+# >>> talisman >>>
+# Below environment variables should not be modified unless you know what you are doing
+export TALISMAN_HOME=/home/adam/.talisman/bin
+alias talisman=$TALISMAN_HOME/talisman_linux_amd64
+export TALISMAN_INTERACTIVE=false
+# <<< talisman <<<
+
+# export PATH="$HOME/.pyenv/bin:$PATH"
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
+
+# Export Codeartifact auth (generated by 'caws login')
+[ -f "$HOME/.config/pip/pip.conf" ] && export PIP_INDEX_URL=$(awk -F "= " '/index-url/ {print $2}' $HOME/.config/pip/pip.conf)
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$('/home/adam/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     eval "$__conda_setup"
+# else
+#     if [ -f "/home/adam/miniconda3/etc/profile.d/conda.sh" ]; then
+#         . "/home/adam/miniconda3/etc/profile.d/conda.sh"
+#     else
+#         export PATH="/home/adam/miniconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# <<< conda initialize <<<
+
