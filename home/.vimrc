@@ -19,6 +19,7 @@ filetype plugin indent on
 
 " Ctrl-p VIM
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+let g:ctrlp_regexp = 0
 
 " General options
 "----------------------------------------
@@ -55,11 +56,11 @@ set visualbell
 set encoding=utf-8
 
 " Font
-set guifont="Droid Sans Mono 10"
+set guifont=Droid\ Sans\ Mono\ 10
 
 " Whitespace
 set wrap
-set textwidth=79
+set textwidth=100
 set formatoptions=tcqrn1
 set tabstop=2
 set shiftwidth=2
@@ -154,10 +155,10 @@ ab dgi                          document.getElementById("")
 ab dgt                          document.getElementsByTagName("")
 ab dce                          document.createElement("")
 ab dct                          document.createTextNode("")
-ab pyhead                       # -*- coding: utf-8 -*-<CR>"""<CR>"""
+ab pyhead                       # -*- coding: utf-8 -*-
 ab pymain                       if "__name__" == "__main__":
 ab jsfor                        for (var i = 0; i < .length; i++) {<CR>}<CR>
-ab pdb                          import pdb<CR>pdb.set_trace()
+ab pdb                          import pdb; from pprint import pprint; pdb.set_trace()
 
 " Buffers
 "----------------------------------------
@@ -182,7 +183,14 @@ nmap <M-v> :vnew<CR>
 nmap <M-Up> :wincmd k<CR>
 
 " Buffer below
-nmap <M-Down> :wincmd j<CR>
+nmap <M-Down> :wincmd j<CR>Buffers
+"----------------------------------------
+let g:miniBufExplUseSingleClick = 1
+let g:miniBufExplMapCTabSwitchBufs = 1
+let g:miniBufExplMapWindowNavTabs = 1
+let g:miniBufExplMapCPageSwitchBufs = 1
+
+" Close b
 
 " Left buffer
 nmap <M-Left> :wincmd h<CR>
@@ -217,6 +225,15 @@ let g:solarized_termcolors=256
 let g:solarized_termtrans=1
 " colorscheme solarized 
 colorscheme chocolate
+
+" Autocommands
+"----------------------------------------
+if !exists("autocommands_loaded")
+      let autocommands_loaded = 1
+      autocmd BufWritePre *.py :%s/\s\+$//e
+      " au BufNewFile   *.html  :call Template("html")
+      " au BufNewFile   *.py    :call Template("pyheader")
+endif
 
 " NERDTree
 " autocmd vimenter * NERDTree
